@@ -42,7 +42,13 @@ running.
 $ kubectl apply -f https://github.com/jetstack/cert-manager/releases/download/v1.5.4/cert-manager.yaml 
 ```
 3. `helm` v3 is [installed](https://helm.sh/docs/intro/install/).
-
+```
+$ wget https://get.helm.sh/helm-v3.7.0-linux-amd64.tar.gz
+$ tar -xzvf helm-v3.7.0-linux-amd64.tar.gz 
+$ mv helm /usr/local/bin/
+$ chmod +x /usr/local/bin/helm
+$ helm list 
+```
 ## Deploy
 
 Run the helm command to install the lxcfs-on-kubernetes to your cluster:
@@ -64,5 +70,33 @@ you can enable the namespace for injection.
 ```
 kubectl label namespace default mount-lxcfs=enabled
 ```
+You can use this demo:
+```
+apiVersion: apps/v1
+kind: Deployment
+metadata:
+  name: web
+spec:
+  replicas: 2
+  selector:
+    matchLabels:
+      app: web
+  template:
+    metadata:
+      labels:
+        app: web
+    spec:
+      containers:
+        - name: web
+          image: httpd:2.4.32
+          imagePullPolicy: Always
+          resources:
+            requests:
+              memory: "256Mi"
+              cpu: "2"
+            limits:
+              memory: "256Mi"
+              cpu: "2"
+```              
 
 > You can change it by setting [matchLabels](charts/lxcfs-on-kubernetes/README.md) during installation
