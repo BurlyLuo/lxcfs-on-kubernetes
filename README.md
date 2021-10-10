@@ -37,8 +37,11 @@ running.
 
 1. `Kubernetes` cluster (v1.19+) is running (see [Applicative Kubernetes versions](../../README.md#applicative-kubernetes-versions)
    for more information). For local development purpose, check [Kind installation](./kind-installation.md).
-1. `cert-manager` (v1.2+) is [installed](https://cert-manager.io/docs/installation/kubernetes/).
-1. `helm` v3 is [installed](https://helm.sh/docs/intro/install/).
+2. `cert-manager` (v1.2+) is [installed](https://cert-manager.io/docs/installation/kubernetes/).
+```
+$ kubectl apply -f https://github.com/jetstack/cert-manager/releases/download/v1.5.4/cert-manager.yaml 
+```
+3. `helm` v3 is [installed](https://helm.sh/docs/intro/install/).
 
 ## Deploy
 
